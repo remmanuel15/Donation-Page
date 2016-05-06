@@ -39,6 +39,7 @@ class ServerHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
     def do_GET(self):
         logging.warning("======= GET STARTED =======")
         logging.warning(self.headers)
+        logging.warning("path: " + self.path)
         SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
 
     def do_POST(self):
@@ -54,6 +55,8 @@ class ServerHandler(SimpleHTTPServer.SimpleHTTPRequestHandler):
         for item in form.list:
             logging.warning(item)
         logging.warning("\n")
+        if self.path == '/Donation.html':
+            self.path = '/Donation2.html'
         SimpleHTTPServer.SimpleHTTPRequestHandler.do_GET(self)
 
 Handler = ServerHandler
